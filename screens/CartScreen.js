@@ -23,7 +23,7 @@ const CartScreen = () => {
     .map(item => item.quantity * item.pricePerKg)
     .reduce((curr, prev) => curr + prev, 0);
   const navigation = useNavigation();
-  const window = useWindowDimensions();
+  // const window = useWindowDimensions();
 
   return (
     <>
