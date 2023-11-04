@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   FlatList,
   Image,
@@ -8,17 +9,15 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import React from 'react';
 import {CATEGORIES} from '../constants';
 import {useNavigation} from '@react-navigation/native';
 
 const ListCategory = () => {
   const navigation = useNavigation();
-
   const window = useWindowDimensions();
   const CARD_SIZE = (window.width - 2 * 24 - 24 - 12) / 4;
 
-  const renderItem = ({item}) => (
+  const renderCategory = ({item}) => (
     <TouchableOpacity
       style={[
         styles.categoryContainer,
@@ -26,36 +25,24 @@ const ListCategory = () => {
           width: CARD_SIZE,
         },
       ]}
-      onPress={() => navigation.navigate('Category')}>
-      <View
-        style={{
-          padding: 10,
-          borderColor: 'gray',
-          borderRadius: 10,
-          borderWidth: 1,
-          backgroundColor: '#ccc',
-        }}>
+      onPress={() =>
+        navigation.navigate('Category', {selectedCategory: item.name})
+      }>
+      <View style={styles.categoryCard}>
         <Image source={item.img} style={styles.categoryImage} />
+        <Text style={styles.categoryName}>{item.name}</Text>
       </View>
-      <Text
-        style={{
-          width: CARD_SIZE - 12,
-          fontFamily: 'Lato-Regular',
-          fontSize: 12,
-          marginTop: 5,
-        }}>
-        {item.name}
-      </Text>
     </TouchableOpacity>
   );
+
   return (
     <SafeAreaView>
       <FlatList
         showsHorizontalScrollIndicator={false}
         data={CATEGORIES}
         horizontal
-        keyExtractor={item => item.id}
-        renderItem={renderItem}
+        keyExtractor={item => item.id.toString()}
+        renderItem={renderCategory}
       />
     </SafeAreaView>
   );
@@ -66,10 +53,21 @@ export default ListCategory;
 const styles = StyleSheet.create({
   categoryContainer: {
     alignItems: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 5,
+    marginTop: 10,
+    borderWidth: 1,
+    borderColor: '#fff',
+    padding: 7,
+    borderRadius: 4,
   },
   categoryImage: {
     width: 60,
     height: 60,
+  },
+  categoryName: {
+    fontSize: 14,
+    marginTop: 8,
+    color: '#000',
+    fontWeight: 'bold',
   },
 });
