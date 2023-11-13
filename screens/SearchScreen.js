@@ -9,11 +9,13 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
-import {CATEGORIES, PRODUCTS} from '../constants';
+import {PRODUCTS} from '../constants';
 
 const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredData, setFilteredData] = useState(PRODUCTS);
+
+  const addCart = () => [console.log('Clicked')];
 
   const handleSearch = text => {
     const filtered = PRODUCTS.filter(
@@ -32,7 +34,7 @@ const SearchScreen = () => {
         <Text style={styles.title}>{item.name}</Text>
         <Text style={styles.price}>Rs.{item.pricePerKg}</Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => addCart()}>
         <Image source={require('../assets/icons/add.png')} />
       </TouchableOpacity>
     </View>

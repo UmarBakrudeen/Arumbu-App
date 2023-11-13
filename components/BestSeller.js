@@ -2,131 +2,82 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
   useWindowDimensions,
-  SafeAreaView,
   Image,
   Pressable,
-  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
+import {incrementQty} from '../ProductReducer';
 import {useNavigation} from '@react-navigation/native';
-import {decrementQty, incrementQty} from '../ProductReducer';
 
-import {addToCart, decrementQuantity, incrementQuantity} from '../CartReducer';
+import defaultImage from '../assets/images/basket.png';
+
+import {addToCart} from '../CartReducer';
 import {useDispatch, useSelector} from 'react-redux';
 
 const BestSeller = ({item}) => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   const cart = useSelector(state => state.cart.cart);
   const addItemToCart = () => {
     dispatch(addToCart(item));
     dispatch(incrementQty(item));
   };
 
+  const handleCardPress = () => {
+    navigation.navigate('ProductDetails', {item});
+  };
+
   const window = useWindowDimensions();
   const CARD_SIZE = (window.width - 2 * 20 - 20 - 10) / 2;
 
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          width: CARD_SIZE,
-        },
-      ]}>
-      <View style={{alignItems: 'center'}}>
-        <Image
-          source={item.Img}
-          style={{
-            width: CARD_SIZE - 20,
-            height: CARD_SIZE - 20,
-            borderRadius: 5,
-          }}
-        />
-      </View>
-      <Text style={styles.productName}>{item.name}</Text>
-      <Text style={styles.Qty}>{item.Qty}</Text>
-      <View style={styles.priceContainer}>
-        <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
-        {cart.some(cart => cart.id === item.id) ? (
-          <Pressable
+    <Pressable onPress={handleCardPress}>
+      <View
+        style={[
+          styles.container,
+          {
+            width: CARD_SIZE,
+          },
+        ]}>
+        <View style={{alignItems: 'center'}}>
+          <Image
+            source={item && item.Img ? item.Img : defaultImage}
             style={{
-              flexDirection: 'row',
-              paddingHorizontal: 10,
-              paddingVertical: 3,
-            }}>
-            <Pressable
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 11,
-                borderColor: '#005600',
-                borderWidth: 0.5,
-                backgroundColor: '#e8f5e9',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              onPress={() => {
-                dispatch(decrementQuantity(item));
-                dispatch(decrementQty(item));
-              }}>
-              <Text
+              width: CARD_SIZE - 10,
+              height: CARD_SIZE - 10,
+              borderRadius: 5,
+              resizeMode: 'contain',
+            }}
+          />
+        </View>
+        <Text style={styles.productName}>{item.name}</Text>
+        <Text style={styles.Qty}>{item.Qty}</Text>
+        <View style={styles.priceContainer}>
+          <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
+          {cart.some(cart => cart.id === item.id) ? (
+            <Pressable style={styles.button}>
+              <Image
+                source={require('../assets/images/icons8-add-to-cart-50.png')}
                 style={{
-                  fontSize: 16,
-                  color: '#005600',
-                  paddingHorizontal: 6,
-                  fontWeight: '600',
-                  textAlign: 'center',
-                }}>
-                -
-              </Text>
+                  width: 15,
+                  height: 15,
+                }}
+              />
             </Pressable>
-            <Pressable>
-              <Text
-                style={{
-                  fontSize: 15,
-                  color: '#005600',
-                  paddingHorizontal: 8,
-                  fontFamily: 'Lato-Bold',
-                }}>
-                {item.quantity}
-              </Text>
+          ) : (
+            <Pressable style={styles.button} onPress={addItemToCart}>
+              <View>
+                <Text style={{textAlign: 'center', color: 'white'}}>
+                  Add to Cart
+                </Text>
+              </View>
             </Pressable>
-            <Pressable
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 11,
-                borderColor: '#005600',
-                borderWidth: 0.5,
-                backgroundColor: '#e8f5e9',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              onPress={() => {
-                dispatch(incrementQuantity(item));
-                dispatch(incrementQty(item));
-              }}>
-              <Text
-                style={{
-                  fontSize: 16,
-                  color: '#005600',
-                  paddingHorizontal: 6,
-                  fontWeight: '600',
-                  textAlign: 'center',
-                }}>
-                +
-              </Text>
-            </Pressable>
-          </Pressable>
-        ) : (
-          <Pressable style={styles.button} onPress={addItemToCart}>
-            <Text style={styles.buttonText}>ADD</Text>
-          </Pressable>
-        )}
+          )}
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
@@ -134,40 +85,35 @@ export default BestSeller;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 3,
     backgroundColor: 'white',
     borderRadius: 10,
-
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 4,
+    paddingBottom: 10,
   },
   button: {
-    paddingHorizontal: 25,
-    paddingVertical: 6,
-    borderWidth: 0.2,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
     borderColor: '#004600',
+    marginTop: 12,
+    flex: 1,
     borderRadius: 5,
-    backgroundColor: '#e8f5e9',
+    backgroundColor: '#005600',
+    color: 'white',
   },
   priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignItems: 'start',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
   },
   productName: {
     fontFamily: 'Lato-Bold',
     color: '#005600',
-    fontSize: 13,
-    marginVertical: 5,
+    fontSize: 15,
     marginLeft: 10,
+    marginTop: 10,
+    fontWeight: 'bold',
+    height: 45,
   },
   buttonText: {
     color: '#004600',

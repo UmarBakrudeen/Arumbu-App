@@ -11,7 +11,6 @@ import {PRODUCTS} from '../constants';
 
 const CategoryScreen = ({route}) => {
   const {selectedCategory} = route.params;
-  console.log('Selected Category:', selectedCategory);
 
   const filteredProducts = PRODUCTS.filter(
     product => product.category === selectedCategory,

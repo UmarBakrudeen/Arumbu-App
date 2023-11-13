@@ -32,31 +32,34 @@ const PaymentScreen = () => {
       <ScrollView>
         <View style={styles.paymentMethod}>
           <Text style={styles.sectionTitle}>Payment Method</Text>
+          <Text style={styles.sectionPara}>Choose payment method to pay</Text>
           <TouchableOpacity
             style={[
               styles.paymentOption,
               {
                 backgroundColor:
-                  selectedPaymentMethod === 'Credit Card'
-                    ? '#005600'
-                    : 'transparent',
+                  selectedPaymentMethod === 'Credit Card' ? '#005600' : '#fff',
+                height: 60,
               },
             ]}
             onPress={() => handlePaymentMethodSelect('Credit Card')}>
-            <Text
-              style={{
-                color:
-                  selectedPaymentMethod === 'Credit Card' ? 'white' : 'black',
-              }}>
-              Credit Card
-            </Text>
+            <View style={styles.paymentOptionContent}>
+              <Text
+                style={{
+                  color:
+                    selectedPaymentMethod === 'Credit Card' ? 'white' : 'black',
+                }}>
+                Credit Card
+              </Text>
+            </View>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
               styles.paymentOption,
               {
                 backgroundColor:
-                  selectedPaymentMethod === 'UPI' ? '#005600' : 'transparent',
+                  selectedPaymentMethod === 'UPI' ? '#005600' : '#fff',
+                height: 60,
               },
             ]}
             onPress={() => handlePaymentMethodSelect('UPI')}>
@@ -74,7 +77,8 @@ const PaymentScreen = () => {
                 backgroundColor:
                   selectedPaymentMethod === 'Cash on Delivery'
                     ? '#005600'
-                    : 'transparent',
+                    : '#fff',
+                height: 60,
               },
             ]}
             onPress={() => handlePaymentMethodSelect('Cash on Delivery')}>
@@ -156,6 +160,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 8,
+  },
+  card: {
+    width: 30,
+    height: 40,
+    backgroundColor: 'red',
   },
   paymentMethod: {
     borderBottomColor: 'gray',

@@ -3,7 +3,6 @@ import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import {Card, Title, Paragraph, Button} from 'react-native-paper';
 
 class YourOrder extends Component {
-  // Dummy data for products
   products = [
     {
       id: '1',

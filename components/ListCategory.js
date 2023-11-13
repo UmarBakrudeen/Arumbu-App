@@ -29,7 +29,9 @@ const ListCategory = () => {
         navigation.navigate('Category', {selectedCategory: item.name})
       }>
       <View style={styles.categoryCard}>
-        <Image source={item.img} style={styles.categoryImage} />
+        <View style={styles.imageContent}>
+          <Image source={item.img} style={styles.categoryImage} />
+        </View>
         <Text style={styles.categoryName}>{item.name}</Text>
       </View>
     </TouchableOpacity>
@@ -55,19 +57,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 5,
     marginTop: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
-    padding: 7,
-    borderRadius: 4,
+  },
+  imageContent: {
+    width: 60,
+    height: 60,
   },
   categoryImage: {
     width: 60,
     height: 60,
+    borderRadius: 50,
+    backgroundColor: '#fff',
+    objectFit: 'contain',
   },
   categoryName: {
-    fontSize: 14,
+    fontSize: 13,
     marginTop: 8,
     color: '#000',
-    fontWeight: 'bold',
   },
 });

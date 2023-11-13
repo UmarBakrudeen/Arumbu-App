@@ -2,7 +2,6 @@ import {
   StyleSheet,
   Text,
   View,
-  useWindowDimensions,
   Image,
   TouchableOpacity,
   Pressable,
@@ -13,8 +12,6 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {decrementQty, incrementQty} from '../ProductReducer';
 import {decrementQuantity, incrementQuantity} from '../CartReducer';
-
-import LottieView from 'lottie-react-native';
 
 const CartScreen = () => {
   const dispatch = useDispatch();
@@ -81,6 +78,14 @@ const CartScreen = () => {
                       style={{
                         paddingLeft: 10,
                       }}>
+                      <Image
+                        source={item.Img}
+                        style={{
+                          height: 50,
+                          width: 50,
+                          borderRadius: 10,
+                        }}
+                      />
                       <Text style={styles.productName}>{item.name}</Text>
                       <Text style={styles.Qty}>{item.Qty}</Text>
                       <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
@@ -94,6 +99,14 @@ const CartScreen = () => {
                       backgroundColor: '#005600',
                       borderRadius: 10,
                     }}>
+                    <Image
+                      source={item.Img}
+                      style={{
+                        height: 50,
+                        width: 50,
+                        borderRadius: 10,
+                      }}
+                    />
                     <TouchableOpacity
                       onPress={() => {
                         dispatch(decrementQuantity(item));

@@ -85,36 +85,36 @@ export const CATEGORIES = [
   {
     id: 1,
     name: 'Rice & Flour',
-    img: require('../assets/icons/grocery.png'),
+    img: require('../assets/images/Category/Rice_Flour.png'),
   },
   {
     id: 2,
     name: 'Dal & Pulse',
-    img: require('../assets/icons/grocery.png'),
+    img: require('../assets/images/Category/Dal_Pulse.png'),
   },
   {
     id: 3,
     name: 'Oil & Ghee',
-    img: require('../assets/icons/grocery.png'),
+    img: require('../assets/images/Category/Oil_Ghee.png'),
   },
   {
     id: 4,
     name: 'Masala & Spices',
-    img: require('../assets/icons/grocery.png'),
+    img: require('../assets/images/Category/Spices.png'),
   },
   {
     id: 5,
     name: 'Dry Fruit & nut',
-    img: require('../assets/icons/grocery.png'),
+    img: require('../assets/images/Category/Fruit_Nuts.png'),
   },
   {
     id: 6,
     name: 'Body Care',
-    img: require('../assets/icons/grocery.png'),
+    img: require('../assets/images/Category/body_Care.png'),
   },
   {
     id: 7,
     name: 'Home Care',
-    img: require('../assets/icons/grocery.png'),
+    img: require('../assets/images/Category/Home_Cart.png'),
   },
 ];

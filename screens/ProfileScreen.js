@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  ScrollView,
   FlatList,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -12,8 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 const ProfileScreen = () => {
   const navigation = useNavigation();
 
-  // Assume isAuthenticated is a variable indicating whether the user is authenticated.
-  const isAuthenticated = true; // You should set this based on your authentication logic.
+  const isAuthenticated = true;
 
   const menuOptions = [
     {id: 'YourOrders', title: 'Your Orders'},
@@ -30,49 +30,53 @@ const ProfileScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Image
-          source={require('../assets/images/ChanaDal.jpg')}
-          style={styles.profileImage}
-        />
-        <Text style={styles.username}>Thalaiva Umar</Text>
-        <Text style={styles.email}>umar.bakrudeen@gmail.com</Text>
-      </View>
-      {isAuthenticated ? (
-        <View style={styles.menu}>
-          <FlatList
-            data={menuOptions}
-            keyExtractor={item => item.id}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                style={styles.menuItem}
-                onPress={() => handleMenuItemPress(item.id)}>
-                <Text style={styles.menuItemText}>{item.title}</Text>
-              </TouchableOpacity>
-            )}
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Image
+            source={require('../assets/images/ChanaDal.jpg')}
+            style={styles.profileImage}
           />
+          <Text style={styles.username}>Thalaiva Umar</Text>
+          <Text style={styles.email}>umar.bakrudeen@gmail.com</Text>
         </View>
-      ) : (
-        <View style={styles.profileActions}>
-          <TouchableOpacity style={styles.loginButton}>
-            <Text style={styles.loginButtonText}>Login / Signup</Text>
+        {isAuthenticated ? (
+          <View style={styles.menu}>
+            <FlatList
+              data={menuOptions}
+              keyExtractor={item => item.id}
+              renderItem={({item}) => (
+                <TouchableOpacity
+                  style={styles.menuItem}
+                  onPress={() => handleMenuItemPress(item.id)}>
+                  <Text style={styles.menuItemText}>{item.title}</Text>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        ) : (
+          <View style={styles.profileActions}>
+            <TouchableOpacity
+              style={styles.loginButton}
+              onPress={() => navigation.navigate('Signup')}>
+              <Text style={styles.loginButtonText}>Login / Signup</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        {isAuthenticated && (
+          <TouchableOpacity style={styles.logoutButton}>
+            <Text style={styles.logoutText}>Sign Out</Text>
           </TouchableOpacity>
-        </View>
-      )}
-      {isAuthenticated && (
-        <TouchableOpacity style={styles.logoutButton}>
-          <Text style={styles.logoutText}>Sign Out</Text>
-        </TouchableOpacity>
-      )}
-    </View>
+        )}
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F7FFF757',
   },
   header: {
     alignItems: 'center',
@@ -95,17 +99,17 @@ const styles = StyleSheet.create({
   },
   menu: {
     borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    borderTopColor: '#eee',
     paddingVertical: 10,
   },
   menuItem: {
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: '#eee',
     paddingVertical: 15,
     paddingLeft: 20,
   },
   menuItemText: {
-    fontSize: 18,
+    fontSize: 15,
   },
   profileActions: {
     alignItems: 'center',
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#005600',
     borderRadius: 5,
     paddingVertical: 15,
-    width: 200, // You can adjust the width
+    width: 200,
     alignItems: 'center',
   },
   loginButtonText: {
