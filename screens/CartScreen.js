@@ -76,19 +76,28 @@ const CartScreen = () => {
                     ) : null}
                     <View
                       style={{
-                        paddingLeft: 10,
+                        flexDirection: 'row',
+                        paddingLeft: 5,
+                        alignItems: 'center',
                       }}>
-                      <Image
-                        source={item.Img}
+                      <View>
+                        <Image
+                          source={item.Img}
+                          style={{
+                            height: 50,
+                            width: 50,
+                            borderRadius: 10,
+                          }}
+                        />
+                      </View>
+                      <View
                         style={{
-                          height: 50,
-                          width: 50,
-                          borderRadius: 10,
-                        }}
-                      />
-                      <Text style={styles.productName}>{item.name}</Text>
-                      <Text style={styles.Qty}>{item.Qty}</Text>
-                      <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
+                          paddingLeft: 10,
+                        }}>
+                        <Text style={styles.productName}>{item.name}</Text>
+                        <Text style={styles.Qty}>{item.Qty}</Text>
+                        <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
+                      </View>
                     </View>
                   </View>
                   <View
@@ -99,14 +108,14 @@ const CartScreen = () => {
                       backgroundColor: '#005600',
                       borderRadius: 10,
                     }}>
-                    <Image
+                    {/* <Image
                       source={item.Img}
                       style={{
                         height: 50,
                         width: 50,
                         borderRadius: 10,
                       }}
-                    />
+                    /> */}
                     <TouchableOpacity
                       onPress={() => {
                         dispatch(decrementQuantity(item));

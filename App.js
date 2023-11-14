@@ -25,7 +25,7 @@ import CustomerService from './components/ProfilePages/CustomerService';
 // Import your tab icon images
 import homeIcon from './assets/images/home.png';
 import cartIcon from './assets/images/cart.png';
-import profileIcon from './assets/images/profile.png';
+import profileIcon from './assets/images/Profile.png';
 
 import store from './store';
 

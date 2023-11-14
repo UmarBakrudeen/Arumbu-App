@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   },
   // Welcome Styles
   title: {
-    fontSize: 27,
+    fontSize: 22,
     fontWeight: 'bold',
     color: COLORS.primary,
   },
