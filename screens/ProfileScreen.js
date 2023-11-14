@@ -10,10 +10,10 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({}) => {
   const navigation = useNavigation();
 
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   const menuOptions = [
     {id: 'YourOrders', title: 'Your Orders'},
