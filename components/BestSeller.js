@@ -57,14 +57,14 @@ const BestSeller = ({item}) => {
         <View style={styles.priceContainer}>
           <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
           {cart.some(cart => cart.id === item.id) ? (
-            <Pressable style={styles.button}>
-              <Image
-                source={require('../assets/images/icons8-add-to-cart-50.png')}
-                style={{
-                  width: 15,
-                  height: 15,
-                }}
-              />
+            <Pressable
+              style={styles.buttonCart}
+              onPress={() => navigation.navigate('Cart')}>
+              <View>
+                <Text style={{textAlign: 'center', color: 'white'}}>
+                  Go to Cart
+                </Text>
+              </View>
             </Pressable>
           ) : (
             <Pressable style={styles.button} onPress={addItemToCart}>
@@ -89,6 +89,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     paddingBottom: 10,
+  },
+  buttonCart: {
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+    borderColor: '#004600',
+    marginTop: 12,
+    flex: 1,
+    borderRadius: 5,
+    backgroundColor: '#90EE90',
+    color: 'white',
   },
   button: {
     paddingHorizontal: 8,
