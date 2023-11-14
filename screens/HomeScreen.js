@@ -79,7 +79,7 @@ const HomeScreen = () => {
 
   function renderSearch() {
     return (
-      <TouchableOpacity
+      <Pressable
         style={styles.searchBox}
         onPress={() => navigation.navigate('Search')}>
         <Image
@@ -96,7 +96,7 @@ const HomeScreen = () => {
           }}>
           Search Products
         </Text>
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 
