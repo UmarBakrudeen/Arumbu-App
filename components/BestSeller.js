@@ -14,6 +14,7 @@ import defaultImage from '../assets/images/basket.png';
 
 import {addToCart} from '../CartReducer';
 import {useDispatch, useSelector} from 'react-redux';
+import {TouchableOpacity} from 'react-native';
 
 const BestSeller = ({item}) => {
   const dispatch = useDispatch();
@@ -57,7 +58,7 @@ const BestSeller = ({item}) => {
         <View style={styles.priceContainer}>
           <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
           {cart.some(cart => cart.id === item.id) ? (
-            <Pressable
+            <TouchableOpacity
               style={styles.buttonCart}
               onPress={() => navigation.navigate('Cart')}>
               <View>
@@ -65,15 +66,15 @@ const BestSeller = ({item}) => {
                   Go to Cart
                 </Text>
               </View>
-            </Pressable>
+            </TouchableOpacity>
           ) : (
-            <Pressable style={styles.button} onPress={addItemToCart}>
+            <TouchableOpacity style={styles.button} onPress={addItemToCart}>
               <View>
                 <Text style={{textAlign: 'center', color: 'white'}}>
                   Add to Cart
                 </Text>
               </View>
-            </Pressable>
+            </TouchableOpacity>
           )}
         </View>
       </View>
