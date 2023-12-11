@@ -61,7 +61,7 @@ const CategoryScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 15,
   },
   categoryTitle: {
     fontSize: 24,
