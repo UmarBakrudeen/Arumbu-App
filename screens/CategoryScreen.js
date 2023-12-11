@@ -20,7 +20,7 @@ const CategoryScreen = ({route}) => {
     product => product.category === selectedCategory,
   );
 
-  const CARD_SIZE = (window.width - 2 * 20 - 20 - 10) / 2;
+  const CARD_SIZE = (window.width - 2 * 14 - 14 - 8) / 2;
 
   const renderItem = ({item}) => (
     <View style={[styles.productCard, {width: CARD_SIZE}]} onPress={() => {}}>
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
   },
   productCard: {
     paddingVertical: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
+    marginBottom: 10,
     backgroundColor: 'white',
     borderRadius: 10,
 
