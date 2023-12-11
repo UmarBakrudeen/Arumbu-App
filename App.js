@@ -123,7 +123,6 @@ const App = () => {
             name="Cart"
             component={CartScreen}
             options={{
-              headerShown: false,
               tabBarBadge: cartCount > 0 ? cartCount : null,
             }}
           />
