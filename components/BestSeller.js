@@ -26,15 +26,15 @@ const BestSeller = ({item}) => {
     dispatch(incrementQty(item));
   };
 
-  const handleCardPress = () => {
-    navigation.navigate('ProductDetails', {item});
-  };
+  // const handleCardPress = () => {
+  //   navigation.navigate('ProductDetails', {item});
+  // };
 
   const window = useWindowDimensions();
   const CARD_SIZE = (window.width - 2 * 20 - 20 - 10) / 2;
 
   return (
-    <Pressable onPress={handleCardPress}>
+    <View>
       <View
         style={[
           styles.container,
@@ -78,7 +78,7 @@ const BestSeller = ({item}) => {
           )}
         </View>
       </View>
-    </Pressable>
+    </View>
   );
 };
 
