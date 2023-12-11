@@ -51,17 +51,15 @@ const HomeScreen = () => {
           <Text style={styles.title}>Welcome Back!</Text>
           <Text style={styles.para}>I want to Order Grocery</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Image
-              source={require('../assets/images/profile.png')}
-              style={{
-                width: 25,
-                height: 25,
-              }}
-            />
-          </View>
-        </TouchableOpacity>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            source={require('../assets/images/Profile.png')}
+            style={{
+              width: 25,
+              height: 25,
+            }}
+          />
+        </View>
       </View>
     );
   }
