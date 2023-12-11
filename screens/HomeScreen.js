@@ -50,45 +50,43 @@ const HomeScreen = () => {
           <Text style={styles.title}>Welcome Back!</Text>
           <Text style={styles.para}>I want to Order Grocery</Text>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
+        <Pressable
+          style={styles.searchBox}
+          onPress={() => navigation.navigate('Search')}>
           <Image
-            source={require('../assets/images/Profile.png')}
+            source={require('../assets/icons/search.png')}
             style={{
               width: 25,
               height: 25,
             }}
           />
-        </View>
+        </Pressable>
       </View>
     );
   }
 
-  function renderSearch() {
-    return (
-      <Pressable
-        style={styles.searchBox}
-        onPress={() => navigation.navigate('Search')}>
-        <Image
-          source={require('../assets/icons/search.png')}
-          style={{
-            width: 15,
-            height: 15,
-          }}
-        />
-        <Text
-          style={{
-            fontFamily: 'Lato Italic',
-            paddingLeft: 10,
-          }}>
-          Search Products
-        </Text>
-      </Pressable>
-    );
-  }
+  // function renderSearch() {
+  //   return (
+  //     <Pressable
+  //       style={styles.searchBox}
+  //       onPress={() => navigation.navigate('Search')}>
+  //       <Image
+  //         source={require('../assets/icons/search.png')}
+  //         style={{
+  //           width: 15,
+  //           height: 15,
+  //         }}
+  //       />
+  //       <Text
+  //         style={{
+  //           fontFamily: 'Lato Italic',
+  //           paddingLeft: 10,
+  //         }}>
+  //         Search Products
+  //       </Text>
+  //     </Pressable>
+  //   );
+  // }
 
   function renderSlider() {
     return (
@@ -105,7 +103,7 @@ const HomeScreen = () => {
           <Pressable
             style={{
               width: windowWidth - 40,
-              height: 200,
+              height: 150,
               borderRadius: 15,
               overflow: 'hidden',
               backgroundColor: 'gray',
@@ -123,16 +121,15 @@ const HomeScreen = () => {
       <View style={styles.container}>
         <ScrollView>
           {renderWelcome()}
-          {renderSearch()}
+          <View style={styles.dealsContainer}>
+            <Text style={styles.headerTitle}> Deals </Text>
+            {renderSlider()}
+          </View>
           <View style={styles.categoryContainer}>
             <Text style={styles.headerTitle}> Categories </Text>
             <ListCategory />
           </View>
 
-          <View style={styles.dealsContainer}>
-            <Text style={styles.headerTitle}> Deals </Text>
-            {renderSlider()}
-          </View>
           <View style={styles.sellerContainer}>
             <View style={styles.header}>
               <Text style={styles.headerTitle}>Best Seller</Text>
@@ -249,12 +246,7 @@ const styles = StyleSheet.create({
   },
   searchBox: {
     flexDirection: 'row',
-    padding: 12,
-    marginTop: 10,
-    borderRadius: 30,
-    backgroundColor: 'white',
     alignItems: 'center',
-    marginHorizontal: 10,
   },
   headerTitle: {
     fontSize: 19,
