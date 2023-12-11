@@ -1,102 +1,139 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import CustomInput from '../CustomComponent/Input';
+import CustomButton from '../CustomComponent/Button';
 
 const SignupScreen = () => {
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handlePhoneNumberChange = text => {
-    const formattedPhoneNumber = text.replace(/[^0-9]/g, '');
-    setPhoneNumber(formattedPhoneNumber);
+  const onSignInPressed = () => {
+    console.warn('Sign In');
   };
 
-  const handleSignUp = () => {
-    console.log('Signing up with:', {
-      firstname,
-      lastname,
-      phoneNumber,
-      email,
-      password,
-    });
+  const onGoogle = () => {
+    console.warn('onGoogle');
+  };
+  const onFaceBook = () => {
+    console.warn('onFaceBook');
+  };
+  const onTermsOfUse = () => {
+    console.warn('onTermsOfUse');
+  };
+  const onPrivacyPolicy = () => {
+    console.warn('onPrivacyPolicy');
   };
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="First Name"
-        onChangeText={text => setFirstname(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Last Name"
-        onChangeText={text => setLastname(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Enter your phone number"
-        value={phoneNumber}
-        onChangeText={handlePhoneNumberChange}
-        keyboardType="phone-pad"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        onChangeText={text => setEmail(text)}
-        keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        onChangeText={text => setPassword(text)}
-        secureTextEntry
-      />
-      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-        <View>
-          <Text style={{textAlign: 'center', color: 'white'}}>Sign Up</Text>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.root}>
+        <Text style={styles.title}> Create An Account </Text>
+        <View style={styles.inputContainer}>
+          <Icon name="user" size={20} color="black" style={styles.icon} />
+          <CustomInput
+            placeholder="User Name"
+            value={userName}
+            setValue={setUserName}
+          />
         </View>
-      </TouchableOpacity>
-    </View>
+
+        <View style={styles.inputContainer}>
+          <Icon name="envelope" size={20} color="black" style={styles.icon} />
+          <CustomInput placeholder="Email" value={email} setValue={setEmail} />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Icon name="lock" size={20} color="black" style={styles.icon} />
+          <CustomInput
+            placeholder="Password"
+            value={password}
+            setValue={setPassword}
+            secureTextEntry
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Icon name="lock" size={20} color="black" style={styles.icon} />
+          <CustomInput
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            setValue={setConfirmPassword}
+            secureTextEntry
+          />
+        </View>
+
+        <CustomButton text="Register" onPress={onSignInPressed} />
+
+        <Text style={styles.text}>
+          By registering, you confirm that you accept our
+          <Text style={styles.link} onPress={onTermsOfUse}>
+            {' '}
+            Terms of Use
+          </Text>{' '}
+          and
+          <Text style={styles.link} onPress={onPrivacyPolicy}>
+            {' '}
+            Privacy Policy
+          </Text>
+        </Text>
+
+        <CustomButton
+          text="Sign In with Google"
+          onPress={onGoogle}
+          bgColor="#E7EAF4"
+          fgColor="#4765A9"
+        />
+        <CustomButton
+          text="Sign In with FaceBook"
+          onPress={onFaceBook}
+          bgColor="#FAE9EA"
+          fgColor="#DD4D44"
+        />
+
+        <CustomButton text="Don't have an " type="TERTIARY" />
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
+  root: {
     alignItems: 'center',
-    padding: 16,
+    minHeight: '100%',
+    padding: 20,
+    backgroundColor: 'white',
   },
   title: {
-    fontSize: 24,
-    marginBottom: 16,
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#051c60',
+    margin: 10,
   },
-  input: {
-    height: 40,
-    width: '80%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingLeft: 8,
+  text: {
+    color: 'gray',
+    marginVertical: 10,
+    lineHeight: 20,
   },
-  button: {
-    paddingHorizontal: 60,
-    paddingVertical: 8,
-    borderColor: '#004600',
-    marginTop: 10,
+  link: {
+    color: 'orange',
+    fontWeight: 'bold',
+    marginLeft: 3,
+    marginRight: 3,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // borderWidth: 1,
+    // borderColor: 'black',
     borderRadius: 5,
-    backgroundColor: '#005600',
-    color: 'white',
+    marginBottom: 10,
+    paddingLeft: 10,
+  },
+  icon: {
+    marginRight: 10,
   },
 });
 

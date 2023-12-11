@@ -1,6 +1,22 @@
 {
+  "api": {
+    "api0eb9e832": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "arumbuapp4fd27912"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
-    "arumbuappf481bb2d": {
+    "arumbuapp287a8ba8": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -16,13 +32,40 @@
           "EMAIL"
         ],
         "socialProviders": [],
-        "usernameAttributes": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
         "verificationMechanisms": [
           "EMAIL"
         ]
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "arumbuapp4fd27912": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_arumbuapp4fd27912_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "arumbuapp4fd27912"
+        }
+      ]
+    },
+    "AMPLIFY_function_arumbuapp4fd27912_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "arumbuapp4fd27912"
+        }
+      ]
     }
   }
 }

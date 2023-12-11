@@ -54,23 +54,12 @@ const HomeScreen = () => {
         <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image
-              source={require('../assets/images/cartBag.png')}
+              source={require('../assets/images/profile.png')}
               style={{
                 width: 25,
                 height: 25,
               }}
             />
-            <Text
-              style={{
-                fontSize: 20,
-                color: '#005600',
-                marginRight: 20,
-                fontWeight: 'bold',
-                marginBottom: 15,
-                marginLeft: 4,
-              }}>
-              {cart.length}
-            </Text>
           </View>
         </TouchableOpacity>
       </View>

@@ -58,7 +58,7 @@ const ProfileScreen = ({}) => {
           <View style={styles.profileActions}>
             <TouchableOpacity
               style={styles.loginButton}
-              onPress={() => navigation.navigate('Signup')}>
+              onPress={() => navigation.navigate('SignIn')}>
               <Text style={styles.loginButtonText}>Login / Signup</Text>
             </TouchableOpacity>
           </View>

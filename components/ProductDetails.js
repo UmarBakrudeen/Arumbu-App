@@ -40,7 +40,8 @@ const ProductDetails = ({route}) => {
   }
 
   const handleBuyNow = () => {
-    dispatch(incrementQuantity(item, quantity));
+    // dispatch(incrementQuantity(item, quantity));
+    console.log('Hello');
   };
 
   return (

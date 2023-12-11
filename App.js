@@ -2,7 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 
 import {Image} from 'react-native';
 
@@ -14,6 +14,8 @@ import ProductScreen from './screens/ProductScreen';
 import SearchScreen from './screens/SearchScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SignupScreen from './components/Auth/SignupScreen';
+import SignInScreen from './components/Auth/SignInScreen';
+
 import ProductDetails from './components/ProductDetails';
 
 import YourOrders from './components/ProfilePages/YourOrder';
@@ -48,7 +50,16 @@ const HomeStack = () => (
     <Stack.Screen name="Category" component={CategoryScreen} />
     <Stack.Screen name="Products" component={ProductScreen} />
     <Stack.Screen name="Payment" component={PaymentScreen} />
-    <Stack.Screen name="Signup" component={SignupScreen} />
+    <Stack.Screen
+      name="Signup"
+      component={SignupScreen}
+      options={{headerShown: false}}
+    />
+    <Stack.Screen
+      name="SignIn"
+      component={SignInScreen}
+      options={{headerShown: false}}
+    />
     <Stack.Screen name="ProductDetails" component={ProductDetails} />
   </Stack.Navigator>
 );
@@ -69,6 +80,8 @@ const ProfileStack = () => (
 );
 
 const App = () => {
+  const cartCount = useSelector(state => state.cart.cart.length);
+
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -106,7 +119,14 @@ const App = () => {
             component={HomeStack}
             options={{headerShown: false}}
           />
-          <Tab.Screen name="Cart" component={CartScreen} />
+          <Tab.Screen
+            name="Cart"
+            component={CartScreen}
+            options={{
+              headerShown: false,
+              tabBarBadge: cartCount > 0 ? cartCount : null,
+            }}
+          />
           <Tab.Screen
             name="Profile"
             component={ProfileStack}

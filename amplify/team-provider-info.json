@@ -1,19 +1,29 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-arumbuapp-dev-130208-authRole",
-      "UnauthRoleArn": "arn:aws:iam::905160551518:role/amplify-arumbuapp-dev-130208-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::905160551518:role/amplify-arumbuapp-dev-130208-authRole",
+      "AuthRoleName": "amplify-arumbuapp-dev-214953-authRole",
+      "UnauthRoleArn": "arn:aws:iam::905160551518:role/amplify-arumbuapp-dev-214953-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::905160551518:role/amplify-arumbuapp-dev-214953-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-arumbuapp-dev-130208-deployment",
-      "UnauthRoleName": "amplify-arumbuapp-dev-130208-unauthRole",
-      "StackName": "amplify-arumbuapp-dev-130208",
-      "StackId": "arn:aws:cloudformation:us-east-1:905160551518:stack/amplify-arumbuapp-dev-130208/6f723b60-7bad-11ee-b6e8-1257eb19d3d3",
-      "AmplifyAppId": "dx1rjx08i0dg1"
+      "DeploymentBucketName": "amplify-arumbuapp-dev-214953-deployment",
+      "UnauthRoleName": "amplify-arumbuapp-dev-214953-unauthRole",
+      "StackName": "amplify-arumbuapp-dev-214953",
+      "StackId": "arn:aws:cloudformation:us-east-1:905160551518:stack/amplify-arumbuapp-dev-214953/f59f8a40-9777-11ee-a1db-0ec5737c0aed",
+      "AmplifyAppId": "d1rfciocgpxtme",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-arumbuapp-dev-214953-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
-        "arumbuappf481bb2d": {}
+        "arumbuapp287a8ba8": {}
+      },
+      "function": {
+        "arumbuapp4fd27912": {
+          "deploymentBucketName": "amplify-arumbuapp-dev-214953-deployment",
+          "s3Key": "amplify-builds/arumbuapp4fd27912-536d547841324937596a-build.zip"
+        }
+      },
+      "api": {
+        "api0eb9e832": {}
       }
     }
   }
