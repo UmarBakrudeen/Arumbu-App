@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   categoryImage: {
     width: 60,
     height: 60,
-    borderRadius: 50,
+    borderRadius: 10,
     backgroundColor: '#fff',
     objectFit: 'contain',
   },

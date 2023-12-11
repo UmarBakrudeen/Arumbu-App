@@ -47,7 +47,6 @@ const CategoryScreen = ({route}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.categoryTitle}>Category: {selectedCategory}</Text>
       <FlatList
         data={filteredProducts}
         numColumns={2}
