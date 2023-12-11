@@ -3,7 +3,6 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity,
   Dimensions,
   ScrollView,
   Pressable,
@@ -51,7 +50,11 @@ const HomeScreen = () => {
           <Text style={styles.title}>Welcome Back!</Text>
           <Text style={styles.para}>I want to Order Grocery</Text>
         </View>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
           <Image
             source={require('../assets/images/Profile.png')}
             style={{
