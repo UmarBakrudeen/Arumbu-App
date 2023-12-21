@@ -20,7 +20,7 @@ const CategoryScreen = ({route}) => {
     product => product.category === selectedCategory,
   );
 
-  const CARD_SIZE = (window.width - 2 * 14 - 14 - 8) / 2;
+  const CARD_SIZE = (window.width - 20 - 10) / 2;
 
   const renderItem = ({item}) => (
     <View style={[styles.productCard, {width: CARD_SIZE}]} onPress={() => {}}>
@@ -35,13 +35,13 @@ const CategoryScreen = ({route}) => {
         />
       </View>
       <Text style={styles.productName}>{item.name}</Text>
-      <Text style={styles.Qty}>{item.Qty}</Text>
       <View style={styles.priceContainer}>
+        <Text style={styles.Qty}>{item.Qty}</Text>
         <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>ADD</Text>
-        </Pressable>
       </View>
+      <Pressable style={styles.button}>
+        <Text style={styles.buttonText}>ADD</Text>
+      </Pressable>
     </View>
   );
 
@@ -61,7 +61,8 @@ const CategoryScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
+    marginVertical: 5,
+    padding: 5,
   },
   categoryTitle: {
     fontSize: 24,
@@ -87,10 +88,14 @@ const styles = StyleSheet.create({
   button: {
     paddingHorizontal: 25,
     paddingVertical: 6,
-    borderWidth: 0.2,
+    borderWidth: 0.5,
     borderColor: '#004600',
     borderRadius: 5,
     backgroundColor: '#e8f5e9',
+    marginVertical: 5,
+    marginHorizontal: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   priceContainer: {
     flexDirection: 'row',
@@ -109,6 +114,7 @@ const styles = StyleSheet.create({
     color: '#004600',
     fontFamily: 'Lato-Bold',
     fontSize: 12,
+    fontWeight: 'bold',
   },
   price: {
     fontFamily: 'Lato-Regular',
@@ -119,7 +125,6 @@ const styles = StyleSheet.create({
     color: '#005600',
     fontSize: 10,
     marginVertical: 2,
-    marginLeft: 10,
   },
 });
 

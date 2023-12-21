@@ -26,15 +26,15 @@ const BestSeller = ({item}) => {
     dispatch(incrementQty(item));
   };
 
-  // const handleCardPress = () => {
-  //   navigation.navigate('ProductDetails', {item});
-  // };
+  const handleCardPress = () => {
+    navigation.navigate('ProductDetails', {item});
+  };
 
   const window = useWindowDimensions();
   const CARD_SIZE = (window.width - 2 * 20 - 20 - 10) / 2;
 
   return (
-    <View>
+    <TouchableOpacity onPress={handleCardPress}>
       <View
         style={[
           styles.container,
@@ -54,31 +54,16 @@ const BestSeller = ({item}) => {
           />
         </View>
         <Text style={styles.productName}>{item.name}</Text>
-        <Text style={styles.Qty}>{item.Qty}</Text>
-        <View style={styles.priceContainer}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <Text style={styles.Qty}>{item.Qty}</Text>
           <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
-          {cart.some(cart => cart.id === item.id) ? (
-            <TouchableOpacity
-              style={styles.buttonCart}
-              onPress={() => navigation.navigate('Cart')}>
-              <View>
-                <Text style={{textAlign: 'center', color: 'white'}}>
-                  Go to Cart
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity style={styles.button} onPress={addItemToCart}>
-              <View>
-                <Text style={{textAlign: 'center', color: 'white'}}>
-                  Add to Cart
-                </Text>
-              </View>
-            </TouchableOpacity>
-          )}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -111,12 +96,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#005600',
     color: 'white',
   },
-  priceContainer: {
-    flexDirection: 'column',
-    alignItems: 'start',
-    justifyContent: 'space-between',
-    paddingHorizontal: 10,
-  },
   productName: {
     fontFamily: 'Lato-Bold',
     color: '#005600',
@@ -132,13 +111,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   price: {
-    fontFamily: 'Lato-Regular',
+    fontFamily: 'Lato-Bold',
     fontSize: 13,
+    color: '#005600',
+    fontWeight: 'bold',
+    marginRight: 10,
   },
   Qty: {
-    fontFamily: 'Lato-Bold',
+    fontFamily: 'Lato-Regular',
     color: '#005600',
-    fontSize: 10,
+    fontSize: 11,
     marginVertical: 2,
     marginLeft: 10,
   },
