@@ -29,7 +29,7 @@ import CustomerService from './components/ProfilePages/CustomerService';
 // Import your tab icon images
 import homeIcon from './assets/images/home.png';
 import cartIcon from './assets/images/cart.png';
-import profileIcon from './assets/images/profile.png';
+import favIcon from './assets/icons/Fav.png';
 import cardBagIcon from './assets/images/cartBag.png';
 import menuIcon from './assets/images/menu.png';
 
@@ -101,7 +101,7 @@ const App = () => {
               } else if (route.name === 'Order') {
                 iconSource = focused ? cardBagIcon : cardBagIcon;
               } else if (route.name === 'Favorite') {
-                iconSource = focused ? profileIcon : profileIcon;
+                iconSource = focused ? favIcon : favIcon;
               } else if (route.name === 'Menu') {
                 iconSource = focused ? menuIcon : menuIcon;
               }
