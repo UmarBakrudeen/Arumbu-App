@@ -1,13 +1,15 @@
+import React, {useEffect} from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Image,
   Dimensions,
-  ScrollView,
   Pressable,
+  TextInput,
+  FlatList,
+  ScrollView,
 } from 'react-native';
-import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import ListCategory from '../components/ListCategory';
 import BestSeller from '../components/BestSeller';
@@ -15,11 +17,11 @@ import {COLORS, PRODUCTS} from '../constants';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProducts} from '../ProductReducer';
 import Carousel from 'react-native-snap-carousel';
+import Logo from '../assets/images/Logo.png';
 
 const sliderImages = [
+  require('../assets/images/slide1.png'),
   require('../assets/images/slide2.png'),
-  require('../assets/images/hero-banner.png'),
-  require('../assets/images/Logo.png'),
 ];
 
 const HomeScreen = () => {
@@ -45,48 +47,48 @@ const HomeScreen = () => {
 
   function renderWelcome() {
     return (
-      <View style={styles.headerContainer}>
-        <View style={{flex: 1}}>
-          <Text style={styles.title}>Welcome Back!</Text>
-          <Text style={styles.para}>I want to Order Grocery</Text>
-        </View>
-        <Pressable
-          style={styles.searchBox}
-          onPress={() => navigation.navigate('Search')}>
+      <View style={styles.headerContent}>
+        <View style={styles.headerContainer}>
+          <View style={styles.logoContainer}>
+            <Image
+              source={Logo}
+              style={{
+                width: 100,
+                height: 40,
+                resizeMode: 'cover',
+              }}
+            />
+          </View>
           <Image
-            source={require('../assets/icons/search.png')}
+            source={require('../assets/icons/bell.png')}
             style={{
               width: 25,
               height: 25,
             }}
           />
-        </Pressable>
+        </View>
+        <View style={styles.searchContainer}>
+          <Pressable
+            style={styles.searchBox}
+            onPress={() => navigation.navigate('Search')}>
+            <Image
+              source={require('../assets/icons/search.png')}
+              style={{
+                width: 15,
+                height: 15,
+                marginLeft: 15,
+              }}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Search Products"
+              placeholderTextColor="#888"
+            />
+          </Pressable>
+        </View>
       </View>
     );
   }
-
-  // function renderSearch() {
-  //   return (
-  //     <Pressable
-  //       style={styles.searchBox}
-  //       onPress={() => navigation.navigate('Search')}>
-  //       <Image
-  //         source={require('../assets/icons/search.png')}
-  //         style={{
-  //           width: 15,
-  //           height: 15,
-  //         }}
-  //       />
-  //       <Text
-  //         style={{
-  //           fontFamily: 'Lato Italic',
-  //           paddingLeft: 10,
-  //         }}>
-  //         Search Products
-  //       </Text>
-  //     </Pressable>
-  //   );
-  // }
 
   function renderSlider() {
     return (
@@ -116,6 +118,18 @@ const HomeScreen = () => {
     );
   }
 
+  function renderSellerItems({item, index}) {
+    const cardStyle = {
+      width: windowWidth / 2 - 15,
+      margin: 5,
+    };
+
+    return (
+      <View style={cardStyle}>
+        <BestSeller item={item} />
+      </View>
+    );
+  }
   return (
     <>
       <View style={styles.container}>
@@ -126,7 +140,7 @@ const HomeScreen = () => {
             {renderSlider()}
           </View>
           <View style={styles.categoryContainer}>
-            <Text style={styles.headerTitle}> Categories </Text>
+            <Text style={styles.headerTitle}> All Categories </Text>
             <ListCategory />
           </View>
 
@@ -134,59 +148,16 @@ const HomeScreen = () => {
             <View style={styles.header}>
               <Text style={styles.headerTitle}>Best Seller</Text>
             </View>
-            <ScrollView
+            <FlatList
+              data={product}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={renderSellerItems}
               horizontal
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{marginBottom: 5}}>
-              {product.map((item, index) => (
-                <BestSeller item={item} key={index} />
-              ))}
-            </ScrollView>
+              contentContainerStyle={{marginBottom: 5}}
+            />
           </View>
         </ScrollView>
-        {/* {total === 0 ? null : (
-          <Pressable
-            style={{
-              backgroundColor: '#005600',
-              padding: 10,
-              marginBottom: 30,
-              margin: 15,
-              borderRadius: 10,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
-            <View>
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontFamily: 'Lato-Regular',
-                  color: 'white',
-                  marginBottom: 3,
-                }}>
-                {cart.length} item
-              </Text>
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontFamily: 'Lato-Bold',
-                  color: 'white',
-                }}>
-                ₹ {total}
-              </Text>
-            </View>
-            <Pressable onPress={() => navigation.navigate('Cart')}>
-              <Text
-                style={{
-                  fontSize: 16,
-                  fontFamily: 'Lato-Bold',
-                  color: 'white',
-                }}>
-                View Cart
-              </Text>
-            </Pressable>
-          </Pressable>
-        )} */}
       </View>
     </>
   );
@@ -197,8 +168,8 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f8f8f800',
-    height: '100%',
   },
+
   // Welcome Styles
   title: {
     fontSize: 22,
@@ -222,13 +193,39 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     margin: 10,
   },
+  headerContent: {
+    paddingHorizontal: 10,
+    backgroundColor: '#f8f8f8',
+    paddingVertical: 20,
+  },
 
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 15,
+  },
+
+  searchContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: 10,
+  },
+  searchBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: '#eee',
+    borderRadius: 10,
+    paddingVertical: 5,
+  },
+  input: {
+    flex: 1,
+    height: 40,
+    padding: 10,
+    marginLeft: 10,
+    color: 'black',
   },
   delivery: {
     fontFamily: 'Lato-Regular',
@@ -244,10 +241,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
-  searchBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+
   headerTitle: {
     fontSize: 19,
     color: 'black',

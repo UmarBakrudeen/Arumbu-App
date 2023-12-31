@@ -55,18 +55,20 @@ export default ListCategory;
 const styles = StyleSheet.create({
   categoryContainer: {
     alignItems: 'center',
-    marginHorizontal: 5,
+    marginHorizontal: 3,
     marginTop: 10,
   },
   imageContent: {
-    width: 60,
-    height: 60,
+    width: 70,
+    height: 70,
   },
   categoryImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 10,
+    width: 70,
+    height: 70,
+    borderRadius: 50,
     backgroundColor: '#fff',
+    borderWidth: 2,
+    borderColor: '#eee',
     objectFit: 'contain',
   },
   categoryName: {

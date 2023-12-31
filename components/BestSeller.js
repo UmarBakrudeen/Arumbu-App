@@ -1,20 +1,10 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-  Image,
-  Pressable,
-} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {incrementQty} from '../ProductReducer';
 import {useNavigation} from '@react-navigation/native';
-
 import defaultImage from '../assets/images/basket.png';
-
 import {addToCart} from '../CartReducer';
 import {useDispatch, useSelector} from 'react-redux';
-import {TouchableOpacity} from 'react-native';
 
 const BestSeller = ({item}) => {
   const dispatch = useDispatch();
@@ -30,36 +20,18 @@ const BestSeller = ({item}) => {
     navigation.navigate('ProductDetails', {item});
   };
 
-  const window = useWindowDimensions();
-  const CARD_SIZE = (window.width - 2 * 20 - 20 - 10) / 2;
-
   return (
     <TouchableOpacity onPress={handleCardPress}>
-      <View
-        style={[
-          styles.container,
-          {
-            width: CARD_SIZE,
-          },
-        ]}>
+      <View style={styles.container}>
         <View style={{alignItems: 'center'}}>
           <Image
             source={item && item.Img ? item.Img : defaultImage}
-            style={{
-              width: CARD_SIZE - 10,
-              height: CARD_SIZE - 10,
-              borderRadius: 5,
-              resizeMode: 'contain',
-            }}
+            style={styles.image}
           />
         </View>
         <Text style={styles.productName}>{item.name}</Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <Text style={styles.Qty}>{item.Qty}</Text>
+        <View style={styles.row}>
+          <Text style={styles.qty}>{item.Qty}</Text>
           <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
         </View>
       </View>
@@ -71,30 +43,26 @@ export default BestSeller;
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 3,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingBottom: 10,
+    width: '93%',
+    // margin: 5,
+    padding: 10,
+    // borderRadius: 10,
+    // paddingBottom: 10,
+    backgroundColor: '#fff',
+    shadowColor: '#ddd',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  buttonCart: {
-    paddingHorizontal: 8,
-    paddingVertical: 8,
-    borderColor: '#004600',
-    marginTop: 12,
-    flex: 1,
+  image: {
+    width: '100%',
+    height: 120,
     borderRadius: 5,
-    backgroundColor: '#90EE90',
-    color: 'white',
-  },
-  button: {
-    paddingHorizontal: 8,
-    paddingVertical: 8,
-    borderColor: '#004600',
-    marginTop: 12,
-    flex: 1,
-    borderRadius: 5,
-    backgroundColor: '#005600',
-    color: 'white',
+    resizeMode: 'cover',
   },
   productName: {
     fontFamily: 'Lato-Bold',
@@ -105,23 +73,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     height: 45,
   },
-  buttonText: {
-    color: '#004600',
-    fontFamily: 'Lato-Bold',
-    fontSize: 12,
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 10,
+  },
+  qty: {
+    fontFamily: 'Lato-Regular',
+    color: '#005600',
+    fontSize: 11,
+    marginVertical: 2,
   },
   price: {
     fontFamily: 'Lato-Bold',
     fontSize: 13,
     color: '#005600',
     fontWeight: 'bold',
-    marginRight: 10,
-  },
-  Qty: {
-    fontFamily: 'Lato-Regular',
-    color: '#005600',
-    fontSize: 11,
-    marginVertical: 2,
-    marginLeft: 10,
   },
 });

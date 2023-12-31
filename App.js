@@ -15,6 +15,8 @@ import SearchScreen from './screens/SearchScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SignupScreen from './components/Auth/SignupScreen';
 import SignInScreen from './components/Auth/SignInScreen';
+import OrderScreen from './screens/OrderScreen';
+import FavoriteScreen from './screens/FavoriteScreen';
 
 import ProductDetails from './components/ProductDetails';
 
@@ -27,7 +29,9 @@ import CustomerService from './components/ProfilePages/CustomerService';
 // Import your tab icon images
 import homeIcon from './assets/images/home.png';
 import cartIcon from './assets/images/cart.png';
-import profileIcon from './assets/images/Profile.png';
+import profileIcon from './assets/images/profile.png';
+import cardBagIcon from './assets/images/cartBag.png';
+import menuIcon from './assets/images/menu.png';
 
 import store from './store';
 
@@ -45,7 +49,7 @@ const HomeStack = () => (
     <Stack.Screen
       name="Cart"
       component={CartScreen}
-      options={{headerShown: true}}
+      options={{headerShown: true, headerTitleAlign: 'center'}}
     />
     <Stack.Screen name="Category" component={CategoryScreen} />
     <Stack.Screen name="Products" component={ProductScreen} />
@@ -53,12 +57,12 @@ const HomeStack = () => (
     <Stack.Screen
       name="Signup"
       component={SignupScreen}
-      options={{headerShown: false}}
+      options={{headerShown: true, headerTitleAlign: 'center'}}
     />
     <Stack.Screen
       name="SignIn"
       component={SignInScreen}
-      options={{headerShown: false}}
+      options={{headerShown: true, headerTitleAlign: 'center'}}
     />
     <Stack.Screen name="ProductDetails" component={ProductDetails} />
   </Stack.Navigator>
@@ -66,11 +70,11 @@ const HomeStack = () => (
 
 const ProfileStack = () => (
   <Stack.Navigator>
-    <Stack.Screen name="Profile" component={ProfileScreen} />
+    {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
     <Stack.Screen
       name="YourOrders"
       component={YourOrders}
-      options={{headerShown: true}}
+      options={{headerShown: true, headerTitleAlign: 'center'}}
     />
     <Stack.Screen name="BuyAgain" component={BuyAgain} />
     <Stack.Screen name="YourLists" component={YourLists} />
@@ -94,8 +98,12 @@ const App = () => {
                 iconSource = focused ? homeIcon : homeIcon;
               } else if (route.name === 'Cart') {
                 iconSource = focused ? cartIcon : cartIcon;
-              } else if (route.name === 'Profile') {
+              } else if (route.name === 'Order') {
+                iconSource = focused ? cardBagIcon : cardBagIcon;
+              } else if (route.name === 'Favorite') {
                 iconSource = focused ? profileIcon : profileIcon;
+              } else if (route.name === 'Menu') {
+                iconSource = focused ? menuIcon : menuIcon;
               }
 
               return (
@@ -127,9 +135,19 @@ const App = () => {
             }}
           />
           <Tab.Screen
-            name="Profile"
-            component={ProfileStack}
-            options={{headerShown: false}}
+            name="Order"
+            component={OrderScreen}
+            options={{headerShown: true, headerTitleAlign: 'center'}}
+          />
+          <Tab.Screen
+            name="Favorite"
+            component={FavoriteScreen}
+            options={{headerShown: true, headerTitleAlign: 'center'}}
+          />
+          <Tab.Screen
+            name="Menu"
+            component={ProfileScreen}
+            options={{headerShown: true, headerTitleAlign: 'center'}}
           />
         </Tab.Navigator>
       </NavigationContainer>
