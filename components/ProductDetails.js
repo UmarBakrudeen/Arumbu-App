@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, {useState} from 'react';
 import {
   StyleSheet,
@@ -7,13 +8,9 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {incrementQuantity, decrementQuantity} from '../CartReducer';
 
 const ProductDetails = ({route}) => {
   const {item} = route.params;
-  const dispatch = useDispatch();
-  const cart = useSelector(state => state.cart); // Assuming "cart" is a valid property in your Redux state
 
   const [quantity, setQuantity] = useState(1);
 

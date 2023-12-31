@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 
 const SplashScreen = () => {
   useEffect(() => {

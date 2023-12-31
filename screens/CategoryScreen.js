@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+
 import React from 'react';
 import {
   StyleSheet,
@@ -5,9 +7,7 @@ import {
   Text,
   FlatList,
   Image,
-  TouchableOpacity,
   useWindowDimensions,
-  Pressable,
 } from 'react-native';
 import {PRODUCTS} from '../constants';
 
@@ -35,13 +35,6 @@ const CategoryScreen = ({route}) => {
         />
       </View>
       <Text style={styles.productName}>{item.name}</Text>
-      {/* <View style={styles.priceContainer}>
-        <Text style={styles.Qty}>{item.Qty}</Text>
-        <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
-      </View>
-      <Pressable style={styles.button}>
-        <Text style={styles.buttonText}>ADD</Text>
-      </Pressable> */}
       <View style={styles.row}>
         <Text style={styles.qty}>{item.Qty}</Text>
         <Text style={styles.price}>Rs. {item.pricePerKg}</Text>
@@ -89,24 +82,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 4,
   },
-  // button: {
-  //   paddingHorizontal: 25,
-  //   paddingVertical: 6,
-  //   borderWidth: 0.5,
-  //   borderColor: '#004600',
-  //   borderRadius: 5,
-  //   backgroundColor: '#e8f5e9',
-  //   marginVertical: 5,
-  //   marginHorizontal: 10,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
-  // priceContainer: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   justifyContent: 'space-between',
-  //   paddingHorizontal: 10,
-  // },
   productName: {
     fontFamily: 'Lato-Bold',
     color: '#005600',
@@ -116,22 +91,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     height: 45,
   },
-  // buttonText: {
-  //   color: '#004600',
-  //   fontFamily: 'Lato-Bold',
-  //   fontSize: 12,
-  //   fontWeight: 'bold',
-  // },
-  // price: {
-  //   fontFamily: 'Lato-Regular',
-  //   fontSize: 13,
-  // },
-  // Qty: {
-  //   fontFamily: 'Lato-Bold',
-  //   color: '#005600',
-  //   fontSize: 10,
-  //   marginVertical: 2,
-  // },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',

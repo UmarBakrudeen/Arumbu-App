@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unstable-nested-components */
+
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
@@ -46,11 +48,6 @@ const HomeStack = () => (
       options={{headerShown: false}}
     />
     <Stack.Screen name="Search" component={SearchScreen} />
-    <Stack.Screen
-      name="Cart"
-      component={CartScreen}
-      options={{headerShown: true, headerTitleAlign: 'center'}}
-    />
     <Stack.Screen name="Category" component={CategoryScreen} />
     <Stack.Screen name="Products" component={ProductScreen} />
     <Stack.Screen name="Payment" component={PaymentScreen} />
@@ -68,6 +65,7 @@ const HomeStack = () => (
   </Stack.Navigator>
 );
 
+// eslint-disable-next-line no-unused-vars
 const ProfileStack = () => (
   <Stack.Navigator>
     {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
@@ -96,11 +94,11 @@ const App = () => {
 
               if (route.name === 'Home') {
                 iconSource = focused ? homeIcon : homeIcon;
-              } else if (route.name === 'Cart') {
+              } else if (route.name === 'My Cart') {
                 iconSource = focused ? cartIcon : cartIcon;
               } else if (route.name === 'Order') {
                 iconSource = focused ? cardBagIcon : cardBagIcon;
-              } else if (route.name === 'Favorite') {
+              } else if (route.name === 'My Favorite') {
                 iconSource = focused ? favIcon : favIcon;
               } else if (route.name === 'Menu') {
                 iconSource = focused ? menuIcon : menuIcon;
@@ -128,10 +126,12 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Tab.Screen
-            name="Cart"
+            name="My Cart"
             component={CartScreen}
             options={{
               tabBarBadge: cartCount > 0 ? cartCount : null,
+              headerShown: true,
+              headerTitleAlign: 'center',
             }}
           />
           <Tab.Screen
@@ -140,14 +140,14 @@ const App = () => {
             options={{headerShown: true, headerTitleAlign: 'center'}}
           />
           <Tab.Screen
-            name="Favorite"
+            name="My Favorite"
             component={FavoriteScreen}
             options={{headerShown: true, headerTitleAlign: 'center'}}
           />
           <Tab.Screen
             name="Menu"
             component={ProfileScreen}
-            options={{headerShown: true, headerTitleAlign: 'center'}}
+            options={{headerShown: false}}
           />
         </Tab.Navigator>
       </NavigationContainer>

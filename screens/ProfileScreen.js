@@ -13,16 +13,64 @@ import {useNavigation} from '@react-navigation/native';
 const ProfileScreen = ({}) => {
   const navigation = useNavigation();
 
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   const menuOptions = [
-    {id: 'YourOrders', title: 'Your Orders'},
-    {id: 'BuyAgain', title: 'Buy Again'},
-    {id: 'YourLists', title: 'Your Lists'},
-    {id: 'YourAccount', title: 'Your Account'},
-    {id: 'Offers', title: 'Offers'},
-    {id: 'Coupons', title: 'Coupons'},
-    {id: 'CustomerService', title: 'Customer Service'},
+    {
+      id: 'MyOrder',
+      title: 'My Orders',
+      image: require('../assets/images/cartBag.png'),
+    },
+    {
+      id: 'Profile',
+      title: 'Profile',
+      image: require('../assets/images/cartBag.png'),
+    },
+    {
+      id: 'Address',
+      title: 'Address',
+      image: require('../assets/images/cartBag.png'),
+    },
+    {
+      id: 'Message',
+      title: 'Message',
+      image: require('../assets/images/cartBag.png'),
+    },
+    {
+      id: 'Coupons',
+      title: 'Coupons',
+      image: require('../assets/images/cartBag.png'),
+    },
+    {
+      id: 'Help & Support',
+      title: 'Help & Support',
+      image: require('../assets/images/cartBag.png'),
+    },
+    {
+      id: 'Privacy Policy',
+      title: 'Privacy Policy',
+      image: require('../assets/images/cartBag.png'),
+    },
+    {
+      id: 'Terms & Conditions',
+      title: 'Terms & Conditions',
+      image: require('../assets/images/cartBag.png'),
+    },
+    {
+      id: 'Return Policy',
+      title: 'Return Policy',
+      image: require('../assets/images/cartBag.png'),
+    },
+    {
+      id: 'About Us',
+      title: 'About Us',
+      image: require('../assets/images/cartBag.png'),
+    },
+    {
+      id: 'Login',
+      title: 'Login',
+      image: require('../assets/images/cartBag.png'),
+    },
   ];
 
   const handleMenuItemPress = screenName => {
@@ -34,13 +82,13 @@ const ProfileScreen = ({}) => {
       <View style={styles.container}>
         <View style={styles.header}>
           <Image
-            source={require('../assets/images/ChanaDal.jpg')}
+            source={require('../assets/images/avatar.png')}
             style={styles.profileImage}
           />
-          <Text style={styles.username}>Thalaiva Umar</Text>
-          <Text style={styles.email}>umar.bakrudeen@gmail.com</Text>
+          <Text style={styles.username}> Guest </Text>
+          <Text style={styles.email}> demo@gmail.com </Text>
         </View>
-        {isAuthenticated ? (
+        {isAuthenticated && (
           <View style={styles.menu}>
             <FlatList
               data={menuOptions}
@@ -49,25 +97,18 @@ const ProfileScreen = ({}) => {
                 <TouchableOpacity
                   style={styles.menuItem}
                   onPress={() => handleMenuItemPress(item.id)}>
+                  <Image source={item.image} style={styles.menuItemImage} />
                   <Text style={styles.menuItemText}>{item.title}</Text>
                 </TouchableOpacity>
               )}
             />
           </View>
-        ) : (
-          <View style={styles.profileActions}>
-            <TouchableOpacity
-              style={styles.loginButton}
-              onPress={() => navigation.navigate('SignIn')}>
-              <Text style={styles.loginButtonText}>Login / Signup</Text>
-            </TouchableOpacity>
-          </View>
         )}
-        {isAuthenticated && (
+        {/* {isAuthenticated && (
           <TouchableOpacity style={styles.logoutButton}>
             <Text style={styles.logoutText}>Sign Out</Text>
           </TouchableOpacity>
-        )}
+        )} */}
       </View>
     </ScrollView>
   );
@@ -76,40 +117,44 @@ const ProfileScreen = ({}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F7FFF757',
+    backgroundColor: '#f8f8f800',
   },
   header: {
     alignItems: 'center',
     padding: 20,
   },
   profileImage: {
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
     borderRadius: 60,
   },
   username: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginTop: 10,
+    fontSize: 20,
+    marginVertical: 10,
+    color: 'black',
   },
   email: {
     fontSize: 16,
-    color: 'gray',
-    marginTop: 5,
+    color: 'black',
   },
   menu: {
-    borderTopWidth: 1,
-    borderTopColor: '#eee',
     paddingVertical: 10,
   },
   menuItem: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-    paddingVertical: 15,
+    paddingVertical: 13,
     paddingLeft: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  menuItemImage: {
+    width: 20,
+    height: 20,
+    marginRight: 20,
   },
   menuItemText: {
-    fontSize: 15,
+    fontSize: 16,
+    color: 'black',
+    fontWeight: '600',
   },
   profileActions: {
     alignItems: 'center',

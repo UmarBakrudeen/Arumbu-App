@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   StyleSheet,
   Text,
@@ -12,6 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {decrementQty, incrementQty} from '../ProductReducer';
 import {decrementQuantity, incrementQuantity} from '../CartReducer';
+import EmptyCart from '../assets/images/emptyCart.png';
 
 const CartScreen = () => {
   const dispatch = useDispatch();
@@ -20,19 +22,17 @@ const CartScreen = () => {
     .map(item => item.quantity * item.pricePerKg)
     .reduce((curr, prev) => curr + prev, 0);
   const navigation = useNavigation();
-  // const window = useWindowDimensions();
 
   return (
     <>
-      <ScrollView>
+      <ScrollView style={{flex: 1}}>
         {total === 0 ? (
           <View style={styles.emptyCartContainer}>
-            <Text style={styles.emptyCartText}>Your Cart is empty</Text>
-            <TouchableOpacity
-              style={styles.shopNowButton}
-              onPress={() => navigation.navigate('Home')}>
-              <Text style={styles.shopNowButtonText}>Shop Now</Text>
-            </TouchableOpacity>
+            <Image source={EmptyCart} style={styles.image} />
+            <Text style={styles.noOrdersText}>Empty Cart</Text>
+            <Text style={styles.para}>
+              Look like you haven't added any item yet.
+            </Text>
           </View>
         ) : (
           <>
@@ -53,7 +53,7 @@ const CartScreen = () => {
                       flexDirection: 'row',
                       alignItems: 'center',
                     }}>
-                    {item.Img && item.Img.uri ? ( // Check if item.Img is defined and has a uri property
+                    {item.Img && item.Img.uri ? (
                       <View
                         style={{
                           borderRadius: 12,
@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#f8f8f800',
   },
   animation: {
     width: 200,
@@ -185,16 +186,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#005600',
     margin: 20,
-  },
-  shopNowButton: {
-    backgroundColor: '#005600',
-    padding: 16,
-    borderRadius: 8,
-  },
-  shopNowButtonText: {
-    color: 'white',
-    fontSize: 18,
-    fontFamily: 'Lato-Bold',
   },
   productName: {
     fontFamily: 'Lato-Bold',
@@ -217,6 +208,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     margin: 10,
+    flex: 1,
   },
   header: {
     fontFamily: 'Lato-Bold',
@@ -250,5 +242,29 @@ const styles = StyleSheet.create({
   button: {
     color: 'white',
     fontFamily: 'Lato-Bold',
+  },
+
+  image: {
+    width: 200,
+    height: 200,
+    resizeMode: 'contain',
+    marginBottom: 20,
+  },
+  noOrdersText: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  para: {
+    fontSize: 15,
+    color: 'black',
+    marginVertical: 10,
+  },
+  loginButton: {
+    backgroundColor: '#005600',
+    paddingVertical: 10,
+    paddingHorizontal: 40,
+    borderRadius: 20,
+    marginTop: 20,
   },
 });

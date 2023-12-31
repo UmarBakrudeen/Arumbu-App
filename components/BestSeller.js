@@ -1,20 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
+
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import {incrementQty} from '../ProductReducer';
 import {useNavigation} from '@react-navigation/native';
 import defaultImage from '../assets/images/basket.png';
-import {addToCart} from '../CartReducer';
-import {useDispatch, useSelector} from 'react-redux';
 
 const BestSeller = ({item}) => {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
-
-  const cart = useSelector(state => state.cart.cart);
-  const addItemToCart = () => {
-    dispatch(addToCart(item));
-    dispatch(incrementQty(item));
-  };
 
   const handleCardPress = () => {
     navigation.navigate('ProductDetails', {item});
@@ -44,10 +36,7 @@ export default BestSeller;
 const styles = StyleSheet.create({
   container: {
     width: '93%',
-    // margin: 5,
     padding: 10,
-    // borderRadius: 10,
-    // paddingBottom: 10,
     backgroundColor: '#fff',
     shadowColor: '#ddd',
     shadowOffset: {

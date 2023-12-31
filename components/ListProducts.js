@@ -1,15 +1,15 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react-native/no-inline-styles */
+
 import {
   StyleSheet,
   Text,
   View,
-  FlatList,
   useWindowDimensions,
-  SafeAreaView,
   Image,
   Pressable,
 } from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {decrementQty, incrementQty} from '../ProductReducer';
@@ -22,7 +22,6 @@ const ListProducts = ({item}) => {
     dispatch(addToCart(item));
     dispatch(incrementQty(item));
   };
-  const navigation = useNavigation();
   const window = useWindowDimensions();
   const CARD_SIZE = (window.width - 2 * 14 - 14 - 8) / 2;
 

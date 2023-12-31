@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect} from 'react';
 import {
   StyleSheet,
@@ -25,11 +26,6 @@ const sliderImages = [
 ];
 
 const HomeScreen = () => {
-  const cart = useSelector(state => state.cart.cart);
-  const total = cart
-    .map(item => item.quantity * item.pricePerKg)
-    .reduce((curr, prev) => curr + prev, 0);
-
   const windowWidth = Dimensions.get('window').width;
 
   const product = useSelector(state => state.product.product);
@@ -37,7 +33,9 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (product.length > 0) return;
+    if (product.length > 0) {
+      return;
+    }
 
     const fetchProducts = () => {
       PRODUCTS.map(item => dispatch(getProducts(item)));
@@ -119,17 +117,31 @@ const HomeScreen = () => {
   }
 
   function renderSellerItems({item, index}) {
-    const cardStyle = {
-      width: windowWidth / 2 - 15,
-      margin: 5,
-    };
+    const CARD_SIZE = (windowWidth - 20 - 10) / 2;
+
+    const isEvenIndex = index % 2 === 0;
+
+    const hasNextItem = index + 1 < product.length;
 
     return (
-      <View style={cardStyle}>
-        <BestSeller item={item} />
+      <View style={{flexDirection: 'row', marginBottom: 10}}>
+        <View
+          style={{
+            width: CARD_SIZE,
+            marginRight: isEvenIndex && hasNextItem ? 10 : 0,
+          }}>
+          <BestSeller item={item} />
+        </View>
+
+        {hasNextItem && (
+          <View style={{width: CARD_SIZE}}>
+            <BestSeller item={product[index + 1]} />
+          </View>
+        )}
       </View>
     );
   }
+
   return (
     <>
       <View style={styles.container}>
@@ -152,7 +164,6 @@ const HomeScreen = () => {
               data={product}
               keyExtractor={(item, index) => index.toString()}
               renderItem={renderSellerItems}
-              horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={{marginBottom: 5}}
             />

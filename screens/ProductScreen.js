@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+
 import {
   StyleSheet,
   FlatList,
@@ -81,5 +83,3 @@ const ProductScreen = () => {
 };
 
 export default ProductScreen;
-
-const styles = StyleSheet.create({});
